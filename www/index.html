@@ -24,7 +24,7 @@
         #canvas {
             display: inline-block;
             vertical-align: top;
-            background: url(/img/1.jpg);
+            background: url(img/1.jpg);
             box-shadow: 10px 10px 10px #999;
             border: 2px solid #333;
         }
@@ -235,6 +235,11 @@
             }
         }
         /* 40px chunks */
+        .imageArrow {
+            height: 26px;
+            width: 26px;
+            cursor:pointer;
+        }
     </style>
 
     <script src="js/jquery-1.10.2.js"></script>
@@ -247,10 +252,18 @@
             <p>score <span id="score">00000</span></p>
             <p>rows <span id="rows">0</span></p>
             <p><span id="startDiv" onclick="startGame()">Start</span></p>
-            <p ><span onclick="clickUpButton()" style="background-image: url('/img/Up.png');height:26px;width:26px;display:inline-block;background-size:100%;"></span></p>
-            <p style="width:50%;float:left;"><span onclick="clickLeftButton()" style="background-image: url('/img/Left.png'); height: 26px; width: 26px; display: inline-block; background-size: 100%; "></span></p>
-            <p style="width:50%;float:left;"><span onclick="clickRightButton()" style="background-image: url('/img/Right.png'); height: 26px; width: 26px; display: inline-block; background-size: 100%; "></span></p>
-            <p style="width:100%;float:left;"><span onclick="clickDownButton()" style="background-image: url('/img/Down.png'); height: 26px; width: 26px; display: inline-block; background-size: 100%; "></span></p>
+            <p>
+                <img src="img/Up.png" onclick="clickUpButton()" class="imageArrow" alt="Up">
+            </p>
+            <p style="width:50%;float:left;">
+                <img src="img/Left.png" onclick="clickLeftButton()" class="imageArrow" alt="Left">
+            </p>
+            <p style="width:50%;float:left;">
+                <img src="img/Right.png" onclick="clickRightButton()" class="imageArrow" alt="Right" >
+            </p>
+            <p style="width:100%;float:left;">
+                <img src="img/Down.png" onclick="clickDownButton()" class="imageArrow" alt="Down">
+            </p>
         </div>
         <canvas id="canvas">
             Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
