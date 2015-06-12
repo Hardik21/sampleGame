@@ -5,7 +5,7 @@
     <style>
         body {
             font-family: Helvetica, sans-serif;
-            
+
         }
 
         #tetris {
@@ -261,7 +261,7 @@
                 <img src="img/Left.png" onclick="clickLeftButton()" class="imageArrow" alt="Left">
             </p>
             <p style="width:50%;float:left;">
-                <img src="img/Right.png" onclick="clickRightButton()" class="imageArrow" alt="Right" >
+                <img src="img/Right.png" onclick="clickRightButton()" class="imageArrow" alt="Right">
             </p>
             <p style="width:100%;float:left;">
                 <img src="img/Down.png" onclick="clickDownButton()" class="imageArrow" alt="Down">
@@ -273,9 +273,6 @@
     </div>
     <script src="js/stats.js"></script>
     <script>
-        $("#canvas").click(function () {
-            alert('click');
-        });
         //-------------------------------------------------------------------------
         // base helper methods
         //-------------------------------------------------------------------------
@@ -692,7 +689,22 @@
         //-------------------------------------------------------------------------
         // FINALLY, lets run the game
         //-------------------------------------------------------------------------
+        canvas.addEventListener("mousedown", getPosition, false);
+        console.log($("#canvas").width());
+        function getPosition(event) {
+            var x = event.x;
+            var y = event.y;
+            var canvas = document.getElementById("canvas");
+            x -= canvas.offsetLeft;
+            y -= canvas.offsetTop;
 
+            var canvasWidth = $("#canvas").width();
+            var canvasHeight = $("#canvas").height();
+            if (x <= (canvasWidth / 2)) {
+            }
+
+            //console.log("x:" + x + " y:" + y);
+        }
         run();
 
     </script>
