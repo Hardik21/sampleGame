@@ -17,7 +17,7 @@
             }
 
             #upcoming {
-                width: 120px;
+                width: 90px;
                 height: 100px;
             }
 
@@ -270,9 +270,32 @@
             bottom:0px;
             top:0px;
         }
-
-        @media screen and (max-width:480px) {
-            .up_arrow img, .left_arrow img, .down_arrow img, .right_arrow img {
+        #menu p.upcoming {
+            margin-top: 0px;
+        }
+        #menu p.up_arrow {
+            margin-top: 30px;
+        }
+        #game_over {
+            display:none;
+            position: fixed;
+            top: 30%;
+            bottom: auto;
+            z-index: 9999;
+            left: auto;
+            right: auto;
+            width: 100%;
+            text-align: center;
+            color:#fff;
+        }
+        .inner_detail {
+            display: inline-block;
+            padding: 30px 100px;
+            border: 2px solid #B67804;
+            border-radius: 10px;
+        }
+         @media screen and (max-width:480px) {
+            .up_arrow img, .left_arrow img, .down_arrow img, .right_arrow img; {
                 width:18px;
                 height:18px;
             }
@@ -282,7 +305,19 @@
             .right_arrow img {
                 margin-right:-15px;
               }
-        } 
+        }
+
+        #homediv {
+            display: none;
+            position: fixed;
+            opacity: 0.9;
+            width: 100%;
+            height: 100%;
+            z-index: 2222;
+            background-color: black;
+            top: 0;
+            left: 0;
+        }
     </style>
 
     <script src="js/jquery-1.10.2.js"></script>
@@ -291,7 +326,7 @@
     <div id="tetris">
         <div id="menu">
             <p id="start"><a href="javascript:play();">Press Space to Play.</a></p>
-            <p><canvas id="upcoming"></canvas></p>
+            <p class="upcoming"><canvas id="upcoming"></canvas></p>
             <p>High score <span id="Highestscore">00000</span></p>
             <p>score <span id="score">00000</span></p>
             <p>Level <span id="spanForLevel">1</span></p>
@@ -313,6 +348,14 @@
         <canvas id="canvas">
             Sorry, this example cannot be run because your browser does not support the &lt;canvas&gt; element
         </canvas>
+        <div id="game_over">
+            <div class="inner_detail">
+                <p>Game Over</p>
+                <p>Total Score <span id="displayScore"></span></p>
+                <p><span id="startDiv" onclick="startGame()">Play Again</span></p>
+            </div>
+        </div>
+        <div id="homediv"></div>
     </div>
     <script src="js/stats.js"></script>
     <script>
@@ -528,10 +571,17 @@
         //-------------------------------------------------------------------------
 
         function play() {
+            $("#game_over").hide();
+            $("#homediv").hide();
             step = Math.max(speed.min, speed.start - (0.005 * rows));
             hide('start'); reset(); playing = true;
         }
-        function lose() { show('start'); setVisualScore(); playing = false; }
+        function lose() {
+            $("#game_over").show();
+            $("#homediv").show();
+            $("#displayScore").html(score);
+            show('start'); setVisualScore(); playing = false;
+        }
 
         function setVisualScore(n) { vscore = n || score; invalidateScore(); }
         function setScore(n) { score = n; setVisualScore(n); }
@@ -539,6 +589,7 @@
         function addScore(n) {
             score = score + n;
             var highScore = parseInt($("#Highestscore").html());
+            
             if (highScore < score) { $("#Highestscore").html(score); }
             if (score > 0 && score <= 250) {
                 $("#spanForLevel").html('1');
