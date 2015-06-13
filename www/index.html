@@ -269,7 +269,9 @@
         <div id="menu">
             <p id="start"><a href="javascript:play();">Press Space to Play.</a></p>
             <p><canvas id="upcoming"></canvas></p>
+            <p>High score <span id="Highestscore">00000</span></p>
             <p>score <span id="score">00000</span></p>
+            <p>Level <span id="spanForLevel">1</span></p>
             <p>rows <span id="rows">0</span></p>
             <p><span id="startDiv" onclick="startGame()">Start</span></p>
             <p class="up_arrow">
@@ -502,15 +504,47 @@
         // GAME LOGIC
         //-------------------------------------------------------------------------
 
-        function play() { hide('start'); reset(); playing = true; }
+        function play() {
+            step = Math.max(speed.min, speed.start - (0.005 * rows));
+            hide('start'); reset(); playing = true;
+        }
         function lose() { show('start'); setVisualScore(); playing = false; }
 
         function setVisualScore(n) { vscore = n || score; invalidateScore(); }
         function setScore(n) { score = n; setVisualScore(n); }
-        function addScore(n) { score = score + n; }
+        
+        function addScore(n) {
+            score = score + n;
+            var highScore = parseInt($("#Highestscore").html());
+            if (highScore < score) { $("#Highestscore").html(score); }
+            if (score > 0 && score <= 150) {
+                $("#spanForLevel").html('1');
+                speed.decrement = 0.005;
+                step = Math.max(speed.min, speed.start - (speed.decrement * rows));
+            }
+            else if (score > 150 && score <= 300) {
+                $("#spanForLevel").html('2');
+                speed.decrement = 0.05;
+                step = Math.max(speed.min, speed.start - (speed.decrement * rows));
+            }
+            else if (score > 300 && score <= 500) {
+                $("#spanForLevel").html('3');
+                speed.decrement = 0.1;
+                step = Math.max(speed.min, speed.start - (speed.decrement * rows));
+            }
+            else if (score > 500) {
+                $("#spanForLevel").html('4');
+                speed.decrement = 0.2;
+                step = Math.max(speed.min, speed.start - (speed.decrement * rows));
+            }
+        }
         function clearScore() { setScore(0); }
         function clearRows() { setRows(0); }
-        function setRows(n) { rows = n; step = Math.max(speed.min, speed.start - (speed.decrement * rows)); invalidateRows(); }
+        function setRows(n) {
+            rows = n;
+            //step = Math.max(speed.min, speed.start - (speed.decrement * rows));
+            invalidateRows();
+        }
         function addRows(n) { setRows(rows + n); }
         function getBlock(x, y) { return (blocks && blocks[x] ? blocks[x][y] : null); }
         function setBlock(x, y, type) { blocks[x] = blocks[x] || []; blocks[x][y] = type; invalidate(); }
@@ -770,6 +804,7 @@
                 console.log('User skipped watching rewarded video');
             }
         });
+
         run();
 
     </script>
