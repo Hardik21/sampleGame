@@ -1,4 +1,4 @@
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.tetrisGame" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0" id="com.phonegap.tetrisGame" version="1.0.1">
   <name>Tetris - Game</name>
   <description>Tetris Game. One of the intresting game.</description>
   <author href="hevintechnoweb.com" email="rpaladiya@hevintechnoweb.com">PhoneGap Team</author>
