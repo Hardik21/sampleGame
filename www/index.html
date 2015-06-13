@@ -3,84 +3,7 @@
 <head>
     <title>Javascript Tetris</title>
     <style>
-        body {
-            font-family: Helvetica, sans-serif;
-        }
-
-        #tetris {
-            margin: 1em auto;
-            padding: 1em;
-            border: 4px solid black;
-            border-radius: 10px;
-            background-color: #F8F8F8;
-            background: url(img/3.jpg);
-        }
-
-        #stats {
-            display: inline-block;
-            vertical-align: top;
-            display: none;
-        }
-
-        #canvas {
-            display: inline-block;
-            vertical-align: top;
-            background: url(img/1.jpg);
-            box-shadow: 10px 10px 10px #999;
-            border: 2px solid #333;
-        }
-
-        #menu {
-            display: inline-block;
-            vertical-align: top;
-            position: relative;
-        }
-
-            #menu p {
-                margin: 0.5em 0;
-                text-align: center;
-            }
-
-                #menu p a {
-                    text-decoration: none;
-                    color: black;
-                }
-
-            #menu #start {
-                display: none;
-            }
-
-        #upcoming {
-            display: block;
-            margin: 0 auto;
-            background-color: #E0E0E0;
-        }
-
-        #score {
-            color: red;
-            font-weight: bold;
-            vertical-align: middle;
-        }
-
-        #rows {
-            color: blue;
-            font-weight: bold;
-            vertical-align: middle;
-        }
-
-        #startDiv {
-            padding: 3px;
-            background-color: burlywood;
-            border-radius: 9px;
-            cursor: pointer;
-        }
-
-
-        #stats {
-            position: absolute;
-            bottom: 0em;
-            right: 1em;
-        }
+        
 
         @media screen and (min-width: 0px) and (min-height: 0px) {
             #tetris {
@@ -236,11 +159,107 @@
             }
         }
         /* 40px chunks */
+        body {
+            font-family: Helvetica, sans-serif;
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow-x: hidden;
+        }
+        #stats {
+            display: inline-block;
+            vertical-align: top;
+            display: none;
+        }
+        #canvas {
+            display: inline-block;
+            vertical-align: top;
+            background: url(img/1.jpg);
+            box-shadow: 10px 10px 10px #999;
+            border: 2px solid #333;
+            width:70%;
+            float:right;
+            position:relative;
+            top:0px;
+            bottom:0px;
+            height:100%;
+        }
+
+        #menu {
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
+            width:28%;
+        }
+            #menu p {
+                margin: 0.5em 0;
+                text-align: center;
+            }
+                #menu p a {
+                    text-decoration: none;
+                    color: black;
+                }
+            #menu #start {
+                display: none;
+            }
+        #upcoming {
+            display: block;
+            margin: 0 auto;
+            background-color: #E0E0E0;
+        }
+        #score {
+            color: #000;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+        #rows {
+            color: blue;
+            font-weight: bold;
+            vertical-align: middle;
+        }
+        #startDiv {
+            padding: 3px;
+            background-color: burlywood;
+            border-radius: 9px;
+            cursor: pointer;
+        }
+
+        #stats {
+            position: absolute;
+            bottom: 0em;
+            right: 1em;
+        }
         .imageArrow {
             height: 26px;
             width: 26px;
             cursor: pointer;
         }
+        #tetris {
+            margin: 1em auto;
+            padding: 2%;
+            border: 4px solid black;
+            border-radius: 10px;
+            background-color: #F8F8F8;
+            background: url(img/3.jpg);
+            width: 95.4%;
+            margin:0px;
+            position:absolute;
+            bottom:0px;
+            top:0px;
+        }
+
+        @media screen and (max-width:480px) {
+            .up_arrow img, .left_arrow img, .down_arrow img, .right_arrow img {
+                width:18px;
+                height:18px;
+            }
+            .left_arrow img {
+                margin-left:-15px;
+            }
+            .right_arrow img {
+                margin-right:-15px;
+              }
+        } 
     </style>
 
     <script src="js/jquery-1.10.2.js"></script>
@@ -253,16 +272,16 @@
             <p>score <span id="score">00000</span></p>
             <p>rows <span id="rows">0</span></p>
             <p><span id="startDiv" onclick="startGame()">Start</span></p>
-            <p>
+            <p class="up_arrow">
                 <img src="img/Up.png" onclick="clickUpButton()" class="imageArrow" alt="Up">
             </p>
-            <p style="width:50%;float:left;">
+            <p style="width:50%;float:left;" class="left_arrow">
                 <img src="img/Left.png" onclick="clickLeftButton()" class="imageArrow" alt="Left">
             </p>
-            <p style="width:50%;float:left;">
+            <p style="width:50%;float:left;" class="right_arrow">
                 <img src="img/Right.png" onclick="clickRightButton()" class="imageArrow" alt="Right">
             </p>
-            <p style="width:100%;float:left;">
+            <p style="width:100%;float:left;" class="down_arrow">
                 <img src="img/Down.png" onclick="clickDownButton()" class="imageArrow" alt="Down">
             </p>
         </div>
