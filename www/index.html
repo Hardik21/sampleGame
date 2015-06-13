@@ -5,7 +5,6 @@
     <style>
         body {
             font-family: Helvetica, sans-serif;
-
         }
 
         #tetris {
@@ -240,7 +239,7 @@
         .imageArrow {
             height: 26px;
             width: 26px;
-            cursor:pointer;
+            cursor: pointer;
         }
     </style>
 
@@ -512,6 +511,7 @@
         }
 
         function update(idt) {
+
             if (playing) {
                 if (vscore < score)
                     setVisualScore(vscore + 1);
@@ -678,19 +678,21 @@
             eachblock(type, x, y, dir, function (x, y) {
                 drawBlock(ctx, x, y, type.color);
             });
+
+            $(this).click(function () {
+                //console.log($(this)[0].eachblock);
+            });
         }
 
         function drawBlock(ctx, x, y, color) {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
             ctx.strokeRect(x * dx, y * dy, dx, dy)
+
         }
 
-        //-------------------------------------------------------------------------
-        // FINALLY, lets run the game
-        //-------------------------------------------------------------------------
+
         canvas.addEventListener("mousedown", getPosition, false);
-        console.log($("#canvas").width());
         function getPosition(event) {
             var x = event.x;
             var y = event.y;
@@ -701,10 +703,54 @@
             var canvasWidth = $("#canvas").width();
             var canvasHeight = $("#canvas").height();
             if (x <= (canvasWidth / 2)) {
+                clickLeftButton();
             }
-
-            //console.log("x:" + x + " y:" + y);
+            else
+                clickRightButton();
         }
+
+        var app = {
+            onDeviceReady: function () {
+                // Initialize Leadbolt SDK with your API Key
+                AppTracker.startSession("PiBRJHzWCYY89EOVy83aULDo8WYxWZLq");
+                // cache Leadbolt Ad without showing it
+                AppTracker.loadModuleToCache("inapp");
+            },
+        };
+
+        function gameOver() {
+            // call this when you want to display the Leadbolt Interstitial
+            AppTracker.loadModule("inapp");
+        }
+
+        canvas.addEventListener('onModuleLoaded', function (e) {
+            console.log('Ad loaded successfully - ' + e.placement);
+            // Add code here to pause game and/or all media including audio
+        });
+        canvas.addEventListener('onModuleFailed', function (e) {
+            if (e.cached) {
+                console.log('Ad failed to cache - ' + e.placement);
+            } else {
+                console.log('Ad failed to display - ' + e.placement);
+            }
+        });
+        canvas.addEventListener('onModuleClosed', function (e) {
+            console.log('Ad closed by user - ' + e.placement);
+            // Add code here to resume game and/or all media including audio
+        });
+        canvas.addEventListener('onModuleCached', function (e) {
+            console.log('Ad cached successfully - ' + e.placement);
+        });
+        canvas.addEventListener('onModuleClicked', function (e) {
+            console.log('Ad clicked by user - ' + e.placement);
+        });
+        canvas.addEventListener('onMediaFinished', function (e) {
+            if (e.viewCompleted) {
+                console.log('User finished watching rewarded video');
+            } else {
+                console.log('User skipped watching rewarded video');
+            }
+        });
         run();
 
     </script>
