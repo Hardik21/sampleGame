@@ -17,8 +17,8 @@
             }
 
             #upcoming {
-                width: 50px;
-                height: 50px;
+                width: 120px;
+                height: 100px;
             }
 
             #canvas {
@@ -39,8 +39,8 @@
             }
 
             #upcoming {
-                width: 75px;
-                height: 75px;
+                width: 105px;
+                height: 95px;
             }
 
             #canvas {
@@ -61,8 +61,8 @@
             }
 
             #upcoming {
-                width: 100px;
-                height: 100px;
+                width: 160px;
+                height: 130px;
             }
 
             #canvas {
@@ -540,22 +540,22 @@
             score = score + n;
             var highScore = parseInt($("#Highestscore").html());
             if (highScore < score) { $("#Highestscore").html(score); }
-            if (score > 0 && score <= 150) {
+            if (score > 0 && score <= 250) {
                 $("#spanForLevel").html('1');
                 speed.decrement = 0.005;
                 step = Math.max(speed.min, speed.start - (speed.decrement * rows));
             }
-            else if (score > 150 && score <= 300) {
+            else if (score > 250 && score <= 450) {
                 $("#spanForLevel").html('2');
                 speed.decrement = 0.05;
                 step = Math.max(speed.min, speed.start - (speed.decrement * rows));
             }
-            else if (score > 300 && score <= 500) {
+            else if (score > 450 && score <= 700) {
                 $("#spanForLevel").html('3');
                 speed.decrement = 0.1;
                 step = Math.max(speed.min, speed.start - (speed.decrement * rows));
             }
-            else if (score > 500) {
+            else if (score > 700) {
                 $("#spanForLevel").html('4');
                 speed.decrement = 0.2;
                 step = Math.max(speed.min, speed.start - (speed.decrement * rows));
@@ -584,6 +584,7 @@
             clearScore();
             setCurrentPiece(next);
             setNextPiece();
+            $("#spanForLevel").html('1');
         }
 
         function update(idt) {
@@ -724,7 +725,7 @@
 
         function drawNext() {
             if (invalid.next) {
-                var padding = (nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
+                var padding = 0;//(nu - next.type.size) / 2; // half-arsed attempt at centering next piece display
                 uctx.save();
                 uctx.translate(0.5, 0.5);
                 uctx.clearRect(0, 0, nu * dx, nu * dy);
@@ -763,8 +764,7 @@
         function drawBlock(ctx, x, y, color) {
             ctx.fillStyle = color;
             ctx.fillRect(x * dx, y * dy, dx, dy);
-            ctx.strokeRect(x * dx, y * dy, dx, dy)
-
+            ctx.strokeRect(x * dx, y * dy, dx, dy);
         }
 
 
