@@ -359,12 +359,14 @@
     </div>
     <script src="js/index.js"></script>
     <script src="js/stats.js"></script>
+    <!--<script src="cordova.js"></script>-->
+    <script src="AppTracker.js"></script>
 
     <script>
         //-------------------------------------------------------------------------
         // base helper methods
         //-------------------------------------------------------------------------
-        app.onDeviceReady();
+        //app.onDeviceReady();
         function get(id) { return document.getElementById(id); }
         function hide(id) { get(id).style.visibility = 'hidden'; }
         function show(id) { get(id).style.visibility = null; }

@@ -36,7 +36,7 @@
   <gap:plugin name="org.apache.cordova.network-information"/>
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
-  <gap:plugin name="org.apache.cordova.AppTracker"  />
+  
   <icon src="icon.png"/>
   <!--<icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
   <icon src="www/res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi"/>
@@ -77,8 +77,16 @@
   <allow-intent href="sms:*"/>
   <allow-intent href="mailto:*"/>
   <allow-intent href="geo:*"/>
+  <js-module src="www/AppTracker.js" name="AppTracker">
+    <clobbers target="AppTracker" />
+  </js-module>
   <platform name="android">
     <allow-intent href="market:*"/>
+    <source-file src="src/android/AppTrackerPhonegap.jar" target-dir="libs" />
+    <source-file src="src/android/AppTracker.jar" target-dir="libs" />
+    <feature name="AppTracker">  
+                <param name="android-package" value="com.apptracker.android.phonegap.AppTrackerPlugin"/>  
+            </feature>  
   </platform>
   <platform name="ios">
     <allow-intent href="itms:*"/>
