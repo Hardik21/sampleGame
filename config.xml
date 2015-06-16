@@ -37,6 +37,7 @@
   <gap:plugin name="org.apache.cordova.splashscreen"/>
   <gap:plugin name="org.apache.cordova.vibration"/>
   
+  
   <icon src="icon.png"/>
   <!--<icon src="www/res/icon/android/icon-36-ldpi.png" gap:platform="android" gap:qualifier="ldpi"/>
   <icon src="www/res/icon/android/icon-48-mdpi.png" gap:platform="android" gap:qualifier="mdpi"/>
@@ -92,4 +93,8 @@
     <allow-intent href="itms:*"/>
     <allow-intent href="itms-apps:*"/>
   </platform>
+  <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+      package="org.apache.cordova" android:versionName="1.0" android:versionCode="1">
+    <uses-sdk android:minSdkVersion="8" />
+  </manifest>
 </widget>

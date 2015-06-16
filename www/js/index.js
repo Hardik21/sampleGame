@@ -32,14 +32,14 @@
 //};
 
 
-var app = {
-    onDeviceReady: function () {
-        // Initialize Leadbolt SDK with your API Key
-        AppTracker.startSession("PiBRJHzWCYY89EOVy83aULDo8WYxWZLq");
-        // cache Leadbolt Ad without showing it
-        AppTracker.loadModuleToCache("inapp");
-    },
-};
+//var app = {
+//    onDeviceReady: function () {
+//        // Initialize Leadbolt SDK with your API Key
+//        AppTracker.startSession("PiBRJHzWCYY89EOVy83aULDo8WYxWZLq");
+//        // cache Leadbolt Ad without showing it
+//        AppTracker.loadModuleToCache("inapp");
+//    },
+//};
 
 function gameOver() {
     // call this when you want to display the Leadbolt Interstitial
