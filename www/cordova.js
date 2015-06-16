@@ -353,15 +353,6 @@
         AppTracker.startSession("PiBRJHzWCYY89EOVy83aULDo8WYxWZLq");
         // cache Leadbolt Ad without showing it
         AppTracker.loadModuleToCache("inapp");
-        //app = {
-        //    onDeviceReady: function () {
-        //        // Initialize Leadbolt SDK with your API Key
-        //        AppTracker.startSession("PiBRJHzWCYY89EOVy83aULDo8WYxWZLq");
-        //        // cache Leadbolt Ad without showing it
-        //        AppTracker.loadModuleToCache("inapp");
-        //    },
-        //};
-
 
     });
 

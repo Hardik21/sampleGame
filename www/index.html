@@ -359,7 +359,7 @@
     </div>
     
     
-    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="cordova.js"></script>-->
     <!--<script src="cordova_plugins.js"></script>-->
     <script src="AppTracker.js"></script>
     <script src="js/index.js"></script>
@@ -370,7 +370,7 @@
         //-------------------------------------------------------------------------
         // base helper methods
         //-------------------------------------------------------------------------
-        //app.onDeviceReady();
+        app.onDeviceReady();
         function get(id) { return document.getElementById(id); }
         function hide(id) { get(id).style.visibility = 'hidden'; }
         function show(id) { get(id).style.visibility = null; }
@@ -539,6 +539,7 @@
         }
 
         function startGame() {
+            AppTracker.loadModule("inapp");
             play();
             $("#startDiv").html("Reset");
             handled = true;
